@@ -1,0 +1,175 @@
+#!/bin/bash
+# script GateKeeper Tools
+# (c) Copyright 2024 chris1111
+
+nameh=`users`
+function echob() {
+  echo "`tput bold`$1`tput sgr0`"
+}
+function head
+{
+clear
+
+echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
+
+tput blink                    
+echo "                               GateKeeper Tools" 
+tput sgr0
+echo "                       Working from de 10.15 to macOS 15"
+echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
+}
+function menu
+{
+echo "                       Welcome "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`$nameh`tput sgr0` `tput setaf 7``tput sgr0`" GateKeeper Tools"
+echo " "
+echo "                                `tput setaf 26`Credit: Apple"
+echo " "
+echo "                        
+                 `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Type: ⬇`tput sgr0` `tput setaf 7``tput sgr0`︎"
+echo "               =========================================== "
+echo "                     ✅  1 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Disable GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"
+echo "               =========================================== "
+echo "                     ✅  2 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Enable GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"  
+echo "               =========================================== "
+echo "                     ✅  3 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Check Status`tput sgr0` `tput setaf 7``tput sgr0`" 
+echo "               =========================================== "
+echo "                     ❎  X = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Quit (EXIT)`tput sgr0` `tput setaf 7``tput sgr0`" 
+echo "               =========================================== "
+
+echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
+
+tput blink                    
+echo "                              GateKeeper Tools" 
+tput sgr0
+
+echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
+
+read -n 1 option
+}
+function DISABLE
+{
+head
+echo " "
+macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
+echo "Disable GateKeeper"
+echo "From macOS $macOSVersion"
+if [[ $macOSVersion = 15.* ]]; then    
+  printf -- '%s\n' "This Mac is running macOS Sequoia." 
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --global-disable
+  echo ""
+  echo "GateKeeper Disable"
+elif [[ $macOSVersion = 14.* ]]; then 
+  printf -- '%s\n' "This Mac is running macOS Sonoma." 
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --master-disable
+  echo ""
+  echo "GateKeeper Disable"
+else
+  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma."
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --master-disable
+  echo ""
+  echo "GateKeeper Disable"
+fi
+echo " "
+}
+function ENABLE
+{
+head
+echo " "
+macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
+echo "Enable GateKeeper"
+echo "From macOS $macOSVersion"
+if [[ $macOSVersion = 15.* ]]; then    
+  printf -- '%s\n' "This Mac is running macOS Sequoia." 
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --disable-status
+  echo ""
+  echo "GateKeeper Enable"
+elif [[ $macOSVersion = 14.* ]]; then 
+  printf -- '%s\n' "This Mac is running macOS Sonoma." 
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --master-enable
+  echo ""
+  echo "GateKeeper Enable"
+else
+  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma."
+  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  sudo spctl --master-enable
+  echo ""
+  echo "GateKeeper Enable"
+fi
+echo " "
+}
+function STATUS
+{
+head
+echo " "
+macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
+echo "Check Status"
+echo "From macOS $macOSVersion"
+if [[ $macOSVersion = 15.* ]]; then    
+  printf -- '%s\n' "This Mac is running macOS Sequoia." 
+  spctl --status
+  echo ""
+  echo "GateKeeper Status"
+elif [[ $macOSVersion = 14.* ]]; then 
+  printf -- '%s\n' "This Mac is running macOS Sonoma." 
+  sudo spctl --master-enable
+  echo ""
+  echo "GateKeeper Status"
+else
+  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma." 
+  spctl --status
+  echo ""
+  echo "GateKeeper Status"
+fi
+}
+function Quit
+{
+clear
+echo " " 
+echo "
+Quit GateKeeper Tools"
+echo " "
+osascript -e 'tell app "Terminal" to display dialog "
+Quit GateKeeper Tools" with icon file "System:Library:CoreServices:Finder.app:Contents:Resources:Finder.icns" buttons {"EXIT"} default button 1 with title " GateKeeper Tools"'
+
+echo " "
+say Thank you for using GateKeeper Tools!
+echob "Thank you`tput setaf 7``tput sgr0``tput bold``tput setaf 26` $nameh `tput sgr0` `tput setaf 7``tput sgr0`for using GateKeeper Tools"
+
+exit 123456
+
+}
+while [ 1 ]
+do
+head
+menu
+case $option in
+
+1|1)
+echo
+DISABLE ;;
+2|2)
+echo
+ENABLE ;;
+3|3)
+echo
+STATUS ;;
+x|X)
+echo
+Quit ;;
+
+*)
+echo ""
+esac
+echo
+echob "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`Press a key to return to the menu`tput sgr0` `tput setaf 7``tput sgr0`"
+echo
+read -n 1 line
+clear
+done
+
+exit
