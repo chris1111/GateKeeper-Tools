@@ -87,6 +87,10 @@ if [[ $macOSVersion = 15.* ]]; then
   sudo spctl --disable-status
   echo ""
   echo "GateKeeper Enable"
+  echo ""
+  echo "Global system activation must be confirmed in the system settings.
+You must choose one of your two Activation Options; this will take effect at the next system reboot."
+  echo "(The Anywhere Option will no longer be available)"
 elif [[ $macOSVersion = 14.* ]]; then 
   printf -- '%s\n' "This Mac is running macOS Sonoma." 
   printf -- '%s\n' "Inseret Your Password To Procceed." 
