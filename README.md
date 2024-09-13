@@ -1,6 +1,6 @@
 # GateKeeper-Tools
 - A tool to Disable / Enable Gatekeeper from macOS 10.15 to macOS 15
-- Do not use with a Profile
+- Do not use with a [Profile](https://github.com/chris1111/Disable-Gatekeeper)
   
 Credit: [Apple](https://www.manpagez.com/man/8/spctl/), [seticon](https://sveinbjorn.org/osxiconutils)
 
