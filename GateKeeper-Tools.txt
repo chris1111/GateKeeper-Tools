@@ -13,27 +13,27 @@ clear
 echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
 
 tput blink                    
-echo "                               GateKeeper Tools" 
+echo "                               GateKeeper Tools"  
 tput sgr0
-echo "                       Working from de 10.15 to macOS 15"
+echo "                       Fonctionne de 10.15 a macOS 15"
 echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
 }
 function menu
 {
-echo "                       Welcome "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`$nameh`tput sgr0` `tput setaf 7``tput sgr0`" GateKeeper Tools"
+echo "                       Bienvenue "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`$nameh`tput sgr0` `tput setaf 7``tput sgr0`" GateKeeper Tools"
 echo " "
 echo "                                `tput setaf 26`Credit: Apple"
 echo " "
 echo "                        
-                 `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Type: ⬇`tput sgr0` `tput setaf 7``tput sgr0`︎"
+                 `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Taper: ⬇`tput sgr0` `tput setaf 7``tput sgr0`︎"
 echo "               =========================================== "
-echo "                     ✅  1 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Disable GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"
+echo "                     ✅  1 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Désactiver GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"
 echo "               =========================================== "
-echo "                     ✅  2 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Enable GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"  
+echo "                     ✅  2 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Activer GateKeeper`tput sgr0` `tput setaf 7``tput sgr0`"  
 echo "               =========================================== "
-echo "                     ✅  3 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Check Status`tput sgr0` `tput setaf 7``tput sgr0`" 
+echo "                     ✅  3 = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Vérifier le Status`tput sgr0` `tput setaf 7``tput sgr0`"  
 echo "               =========================================== "
-echo "                     ❎  X = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Quit (EXIT)`tput sgr0` `tput setaf 7``tput sgr0`" 
+echo "                     ❎  X = `tput setaf 7``tput sgr0``tput bold``tput setaf 26`Quitter (Sortir)`tput sgr0` `tput setaf 7``tput sgr0`" 
 echo "               =========================================== "
 
 echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
@@ -51,26 +51,28 @@ function DISABLE
 head
 echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
-echo "Disable GateKeeper"
-echo "From macOS $macOSVersion"
+echo "Désactiver GateKeeper"
+echo "De macOS $macOSVersion"
 if [[ $macOSVersion = 15.* ]]; then    
-  printf -- '%s\n' "This Mac is running macOS Sequoia." 
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --global-disable
-  echo ""
-  echo "GateKeeper Disable"
+  echo " "
+  echo "La désactivation globale du système d’évaluation doit être confirmée dans les paramètres système."
+  echo " "
+  echo "GateKeeper Désactiver"
 elif [[ $macOSVersion = 14.* ]]; then 
-  printf -- '%s\n' "This Mac is running macOS Sonoma." 
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sonoma." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --master-disable
   echo ""
-  echo "GateKeeper Disable"
+  echo "GateKeeper Désactiver"
 else
-  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma."
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute un macOS antérieur à Sonoma."
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --master-disable
   echo ""
-  echo "GateKeeper Disable"
+  echo "GateKeeper Désactiver"
 fi
 echo " "
 }
@@ -80,29 +82,30 @@ head
 echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
 echo "Enable GateKeeper"
-echo "From macOS $macOSVersion"
+echo "De macOS $macOSVersion"
 if [[ $macOSVersion = 15.* ]]; then    
-  printf -- '%s\n' "This Mac is running macOS Sequoia." 
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
+  spctl --status
   sudo spctl --disable-status
   echo ""
-  echo "GateKeeper Enable"
+  echo "GateKeeper Activer"
   echo ""
-  echo "Global system activation must be confirmed in the system settings.
-You must choose one of your two Activation Options; this will take effect at the next system reboot."
-  echo "(The Anywhere Option will no longer be available)"
+  echo "L'activation globale du système doit être confirmée dans les paramètres système.
+Vous devez choisir une de vos deux Options d'activations; cela prendras effet aux prochain redémarrage du système."
+  echo "(L'Option de n'importe ou ne seras plus disponible)"
 elif [[ $macOSVersion = 14.* ]]; then 
-  printf -- '%s\n' "This Mac is running macOS Sonoma." 
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sonoma." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --master-enable
   echo ""
-  echo "GateKeeper Enable"
+  echo "GateKeeper Activer"
 else
-  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma."
-  printf -- '%s\n' "Inseret Your Password To Procceed." 
+  printf -- '%s\n' "Ce Mac exécute un macOS antérieur à Sonoma."
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --master-enable
   echo ""
-  echo "GateKeeper Enable"
+  echo "GateKeeper Activer"
 fi
 echo " "
 }
@@ -111,38 +114,39 @@ function STATUS
 head
 echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
-echo "Check Status"
-echo "From macOS $macOSVersion"
+echo "Vérifier Status"
+echo "De macOS $macOSVersion"
 if [[ $macOSVersion = 15.* ]]; then    
-  printf -- '%s\n' "This Mac is running macOS Sequoia." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
   spctl --status
   echo ""
-  echo "GateKeeper Status"
+  echo "Status Vérifier"
 elif [[ $macOSVersion = 14.* ]]; then 
-  printf -- '%s\n' "This Mac is running macOS Sonoma." 
-  sudo spctl --master-enable
-  echo ""
-  echo "GateKeeper Status"
-else
-  printf -- '%s\n' "This Mac is running a macOS earlier than Sonoma." 
+  printf -- '%s\n' "Ce Mac exécute macOS Sonoma." 
   spctl --status
   echo ""
-  echo "GateKeeper Status"
+  echo "Status Vérifier"
+else
+  printf -- '%s\n' "Ce Mac exécute un macOS antérieur à Sonoma."
+  spctl --status
+  echo ""
+  echo "Status Vérifier"
 fi
+echo " "
 }
 function Quit
 {
 clear
 echo " " 
 echo "
-Quit GateKeeper Tools"
+Quitter GateKeeper Tools"
 echo " "
 osascript -e 'tell app "Terminal" to display dialog "
-Quit GateKeeper Tools" with icon file "System:Library:CoreServices:Finder.app:Contents:Resources:Finder.icns" buttons {"EXIT"} default button 1 with title " GateKeeper Tools"'
+Quitter GateKeeper Tools" with icon file "System:Library:CoreServices:Finder.app:Contents:Resources:Finder.icns" buttons {"Sortir"} default button 1 with title " GateKeeper Tools"'
 
 echo " "
-say Thank you for using GateKeeper Tools!
-echob "Thank you`tput setaf 7``tput sgr0``tput bold``tput setaf 26` $nameh `tput sgr0` `tput setaf 7``tput sgr0`for using GateKeeper Tools"
+say Merci dutiliser GateKeeper Tools!
+echob "Merci`tput setaf 7``tput sgr0``tput bold``tput setaf 26` $nameh `tput sgr0` `tput setaf 7``tput sgr0`dutiliser GateKeeper Tools"
 
 exit 123456
 
@@ -170,7 +174,7 @@ Quit ;;
 echo ""
 esac
 echo
-echob "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`Press a key to return to the menu`tput sgr0` `tput setaf 7``tput sgr0`"
+echob "`tput setaf 7``tput sgr0``tput bold``tput setaf 26`Appuyez sur une touche pour revenir au menu`tput sgr0` `tput setaf 7``tput sgr0`"
 echo
 read -n 1 line
 clear

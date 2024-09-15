@@ -2,7 +2,7 @@ Building ⬇︎
 
 - [x] `Building:`
 ```bash
-git clone https://github.com/chris1111/GateKeeper-Tools.git && cd $HOME/GateKeeper-Tools && mv GateKeeper-Tools.txt $HOME/GateKeeper-Tools/GateKeeper-Tools.command && chmod 755 GateKeeper-Tools.command && Icon/seticon Icon/applet.icns GateKeeper-Tools.command
+git clone --branch gh-fr https://github.com/chris1111/GateKeeper-Tools.git && cd $HOME/GateKeeper-Tools && mv GateKeeper-Tools.txt $HOME/GateKeeper-Tools/GateKeeper-Tools.command && chmod 755 GateKeeper-Tools.command && Icon/seticon Icon/applet.icns GateKeeper-Tools.command
 ```
 
 
