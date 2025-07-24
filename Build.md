@@ -8,6 +8,6 @@ git clone --branch gh-fr https://github.com/chris1111/GateKeeper-Tools.git && cd
 
 
 
-Now you can run GateKeeper-Tools.command
+Maintenant vous pouvez utiliser GateKeeper-Tools.command
 
-![Screenshot 2024-09-13 at 3 11 32 PM](https://github.com/user-attachments/assets/84c1795e-1be2-4167-ba31-6bb7f7378fcd)
+<img width="573" height="439" alt="Screenshot 2025-07-24 at 6 03 55 PM" src="https://github.com/user-attachments/assets/d62f99f1-370f-44ed-9df9-245ba6bdbc41" />

@@ -1,6 +1,6 @@
 #!/bin/bash
 # script GateKeeper Tools
-# (c) Copyright 2024 chris1111
+# (c) Copyright 2024, 2025 chris1111
 
 nameh=`users`
 function echob() {
@@ -15,7 +15,7 @@ echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
 tput blink                    
 echo "                               GateKeeper Tools"  
 tput sgr0
-echo "                       Fonctionne de 10.15 a macOS 15"
+echo "                       Fonctionne de 10.15 a macOS 26"
 echo "            = = = = = = = = = = = = = = = = = = = = = = = = =  "
 }
 function menu
@@ -53,13 +53,19 @@ echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
 echo "Désactiver GateKeeper"
 echo "De macOS $macOSVersion"
-if [[ $macOSVersion = 15.* ]]; then    
-  printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
+if [[ $macOSVersion = 26.* ]]; then    
+  printf -- '%s\n' "Ce Mac exécute macOS Tahoe." 
   printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   sudo spctl --global-disable
   echo " "
   echo "La désactivation globale du système d’évaluation doit être confirmée dans les paramètres système."
   echo " "
+  echo "GateKeeper Désactiver"
+elif [[ $macOSVersion = 15.* ]]; then 
+  printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
+  sudo spctl --global-disable
+  echo ""
   echo "GateKeeper Désactiver"
 elif [[ $macOSVersion = 14.* ]]; then 
   printf -- '%s\n' "Ce Mac exécute macOS Sonoma." 
@@ -83,7 +89,18 @@ echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
 echo "Enable GateKeeper"
 echo "De macOS $macOSVersion"
-if [[ $macOSVersion = 15.* ]]; then    
+if [[ $macOSVersion = 26.* ]]; then    
+  printf -- '%s\n' "Ce Mac exécute macOS Tahoe." 
+  printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
+  spctl --status
+  sudo spctl --disable-status
+  echo ""
+  echo "GateKeeper Activer"
+  echo ""
+  echo "L'activation globale du système doit être confirmée dans les paramètres système.
+Vous devez choisir une de vos deux Options d'activations; cela prendras effet aux prochain redémarrage du système."
+  echo "(L'Option de n'importe ou ne seras plus disponible)"
+elif [[ $macOSVersion = 15.* ]]; then 
   printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
   printf -- '%s\n' "Insérez votre mot de passe pour continuer." 
   spctl --status
@@ -116,7 +133,12 @@ echo " "
 macOSVersion=$(/usr/bin/sw_vers | grep "ProductVersion" | /usr/bin/awk '{ print $2 }')
 echo "Vérifier Status"
 echo "De macOS $macOSVersion"
-if [[ $macOSVersion = 15.* ]]; then    
+if [[ $macOSVersion = 26.* ]]; then    
+  printf -- '%s\n' "Ce Mac exécute macOS Tahoe." 
+  spctl --status
+  echo ""
+  echo "Status Vérifier"
+elif [[ $macOSVersion = 15.* ]]; then 
   printf -- '%s\n' "Ce Mac exécute macOS Sequoia." 
   spctl --status
   echo ""
