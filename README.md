@@ -7,4 +7,4 @@ Credit: [Apple](https://www.manpagez.com/man/8/spctl/), [seticon](https://sveinb
 Command Build script [Building Script](https://github.com/chris1111/GateKeeper-Tools/blob/main/Build.md)
 
  
-![Screenshot 2024-09-13 at 3 11 32 PM](https://github.com/user-attachments/assets/84c1795e-1be2-4167-ba31-6bb7f7378fcd)
+<img width="617" height="483" alt="Screenshot 2025-07-24 at 9 47 49 AM" src="https://github.com/user-attachments/assets/c443f7af-1adb-46b3-8661-c185e183d5e3" />
